@@ -12,4 +12,5 @@ exit = lambda : 0
 f = list(map(str,s[0]))
 d = list(map(str,s[1]))
 choice = lambda : list(map(lambda x:(x =='S') and square(d[0]) or (x =='T') and trapezoid(d[0], d[1], d[2]) or (x =='P') and parallelogram (d[0],d[1]) or  (x =='E') and exit(),f ))
+print("Задание №2\nОтвет:")
 print(choice())
