@@ -1,4 +1,7 @@
 from tkinter import *
+from tkinter import messagebox as mb
+import tkinter as tk
+from tkinter import filedialog as fd
 from tkcalendar import DateEntry
 class Teacher:
 
@@ -118,7 +121,7 @@ def click_show(frame, window):
         body(i, 2, 0, frame)
         radiobutton.append(r)
 
-def click_save(frame_lable, str_record, str_name, str_first_name, str_second_name, str_telephone, str_calendar, str_experience,variable, r_var):
+def click_save(frame_lable, str_record, str_name, str_first_name, str_second_name, str_telephone, str_calendar, str_experience, variable, r_var):
     gender = ""
     if (r_var.get()):
         gender = "w"
@@ -142,12 +145,76 @@ def click_find(frame_table, variable):
         if (person[i].discipline == variable.get()):
             body(i, 2, 0, frame_table)
 
+def click_allexit():
+    window.destroy()
 
+def click_info():
+    mb.showinfo("Информация", "Информация о разработчике")
+
+def click_new_record():
+    text_record.delete(0, tk.END)
+    text_name.delete(0, tk.END)
+    text_first_name.delete(0, tk.END)
+    text_second_name.delete(0, tk.END)
+    text_telephone.delete(0, tk.END)
+    text_experience.delete(0, tk.END)
+    calendar.delete(0, tk.END)
+    r_var.set(0)
+    variable.set(discipline[0])
+
+
+def click_open(frame_table):
+    person.clear()
+    f = open('text.txt')
+    for line in f:
+        teacher =line.split(" ")
+        person.append(Teacher(str(teacher[0]),teacher[1],teacher[2],teacher[3],teacher[4],str(teacher[5]),str(teacher[6]),teacher[7],str(teacher[8])))
+    click_show(frame_table, window)
+
+def click_save():
+    try:
+        f = open('text.txt', 'x')
+        file_name = fd.asksaveasfilename()
+        f = open(file_name, 'w')
+        for i in range(len(person)):
+            f.write(str(person[i].record) + " " + person[i].name + " " + person[i].first_name + " " + person[
+                i].second_name + " " + person[i].gender + " " + str(person[i].birthday) + " " + str(
+                person[i].telephone) + " " + person[i].discipline + " " + str(person[i].experience) + "\n")
+        f.close()
+    except:
+        f = open('text.txt', 'w')
+        for i in range(len(person)):
+            f.write(str(person[i].record) + " " + person[i].name + " " + person[i].first_name + " " + person[
+                i].second_name + " " + person[i].gender + " " + str(person[i].birthday) + " " + str(
+                person[i].telephone) + " " + person[i].discipline + " " + str(person[i].experience) + "\n")
+        f.close()
+
+def click_saveas():
+    file_name = fd.asksaveasfilename()
+    f = open(file_name, 'w')
+    for i in range(len(person)):
+        f.write(str(person[i].record) + " " + person[i].name + " " + person[i].first_name + " " + person[i].second_name + " " + person[i].gender + " " + str(person[i].birthday) + " " + str(person[i].telephone) + " " + person[i].discipline + " " + str(person[i].experience)+ "\n")
+    f.close()
 
 window = Tk()
 window.title("Преподаватели")
 window.geometry('1100x600')
 window["bg"] = "lavender"
+
+mainmenu = Menu(window)
+window.config(menu=mainmenu)
+filemenu = Menu(mainmenu, tearoff=0)
+helpmenu = Menu(mainmenu, tearoff=0)
+
+filemenu.add_command(label="Создать",command=lambda: click_new_record())
+filemenu.add_command(label="Открыть",command=lambda: click_open(frame_table))
+filemenu.add_command(label="Сохранить",command=lambda: click_save())
+filemenu.add_command(label="Сохранить как...", command=lambda: click_saveas())
+filemenu.add_command(label="Выход", command=lambda: click_allexit())
+helpmenu.add_command(label="Информация", command=lambda: click_info())
+mainmenu.add_cascade(label="Файл", menu=filemenu)
+mainmenu.add_cascade(label="Справка", menu=helpmenu)
+
 frame_lable = Frame(window)
 frame_lable["bg"] = "lavender"
 hint = Label(frame_lable, text="", font=("Comic Sans MS", 8), background="lavender",padx="20", pady="8", width=15, height=1).grid(row=0, column=0)
@@ -170,16 +237,20 @@ find = Button(frame_btn, text="Найти запись", background="light steel
 
 lable_record = Label(frame_new_record, text="Табельный номер: ", font=("Comic Sans MS", 10), background="lavender",padx="20", pady="8", width=15, height=1).grid(row=0, column=0)
 str_record = StringVar()
-text_record = Entry(frame_new_record, font=("Comic Sans MS", 10), textvariable = str_record).grid(row=0, column=1)
+text_record = Entry(frame_new_record, font=("Comic Sans MS", 10), textvariable = str_record)
+text_record.grid(row=0, column=1)
 lable_name = Label(frame_new_record, text="Имя: ", font=("Comic Sans MS", 10), background="lavender",padx="20", pady="8", width=15, height=1).grid(row=1, column=0)
 str_name = StringVar()
-text_name = Entry(frame_new_record, font=("Comic Sans MS", 10), textvariable = str_name).grid(row=1, column=1)
+text_name = Entry(frame_new_record, font=("Comic Sans MS", 10), textvariable = str_name)
+text_name.grid(row=1, column=1)
 str_first_name = StringVar()
 lable_first_name = Label(frame_new_record, text="Фамилия: ", font=("Comic Sans MS", 10), background="lavender",padx="20", pady="8", width=15, height=1).grid(row=2, column=0)
-text_first_name = Entry(frame_new_record, font=("Comic Sans MS", 10), textvariable = str_first_name ).grid(row=2, column=1)
+text_first_name = Entry(frame_new_record, font=("Comic Sans MS", 10), textvariable = str_first_name )
+text_first_name.grid(row=2, column=1)
 str_second_name = StringVar()
 lable_second_name = Label(frame_new_record, text="Отчество: ", font=("Comic Sans MS", 10), background="lavender",padx="20", pady="8", width=15, height=1).grid(row=3, column=0)
-text_second_name = Entry(frame_new_record, font=("Comic Sans MS", 10), textvariable = str_second_name).grid(row=3, column=1)
+text_second_name = Entry(frame_new_record, font=("Comic Sans MS", 10), textvariable = str_second_name)
+text_second_name.grid(row=3, column=1)
 lable_gender = Label(frame_new_record, text="Пол: ", font=("Comic Sans MS", 10), background="lavender",padx="20", pady="8", width=15, height=1).grid(row=4, column=0)
 r_var = BooleanVar()
 r_var.set(0)
@@ -187,14 +258,16 @@ mаn = Radiobutton(frame_new_record, text="Мужчина", font=("Comic Sans MS
 woman = Radiobutton(frame_new_record, text="Женщина", font=("Comic Sans MS", 10), background="lavender", activebackground="lavender", variable=r_var, value=1).grid(row=4, column=2)
 lable_birthday = Label(frame_new_record, text="День рождения: ", font=("Comic Sans MS", 10), background="lavender",padx="20", pady="8", width=15, height=1).grid(row=5, column=0)
 str_calendar = StringVar()
-calendar = DateEntry(frame_new_record, width=12,  background="RoyalBlue4", foreground="lavender", borderwidth=2,textvariable = str_calendar).grid(row=5, column=1)
-
+calendar = DateEntry(frame_new_record, width=12,  background="RoyalBlue4", foreground="lavender", borderwidth=2,textvariable = str_calendar)
+calendar.grid(row=5, column=1)
 lable_telephone = Label(frame_new_record, text="Телефон: ", font=("Comic Sans MS", 10), background="lavender",padx="20", pady="8", width=15, height=1).grid(row=0, column=2)
 str_telephone = StringVar()
-text_telephone = Entry(frame_new_record, font=("Comic Sans MS", 10), textvariable = str_telephone).grid(row=0, column=3)
+text_telephone = Entry(frame_new_record, font=("Comic Sans MS", 10), textvariable = str_telephone)
+text_telephone.grid(row=0, column=3)
 lable_experience = Label(frame_new_record, text="Стаж: ", font=("Comic Sans MS", 10), background="lavender",padx="20", pady="8", width=15, height=1).grid(row=1, column=2)
 str_experience = StringVar()
-text_experience = Entry(frame_new_record, font=("Comic Sans MS", 10), textvariable = str_experience).grid(row=1, column=3)
+text_experience = Entry(frame_new_record, font=("Comic Sans MS", 10), textvariable = str_experience)
+text_experience.grid(row=1, column=3)
 lable_discipline = Label(frame_new_record, text="Дисциплина: ", font=("Comic Sans MS", 10), background="lavender",padx="20", pady="8", width=15, height=1).grid(row=2, column=2)
 variable = StringVar(frame_new_record)
 variable.set(discipline[0])

@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ef0e1e9-e30f-476a-b4b9-b1b360d7afc6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Lab5/Lab5.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/tk-0.1.0.dist-info/INSTALLER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/tk-0.1.0.dist-info/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/tk-0.1.0.dist-info/METADATA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/tk-0.1.0.dist-info/RECORD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/tk-0.1.0.dist-info/WHEEL" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/tk-0.1.0.dist-info/top_level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/tk/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/tk/structure/Tensor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/tk/structure/TensorMap.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/tk/structure/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab4/Lab4.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lab4/Lab4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab5/Lab5.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lab5/Lab5.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +39,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Lab4">
+  <component name="RunManager" selected="Python.Lab5">
     <configuration name="Lab1" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Python_Labs" />
       <option name="INTERPRETER_OPTIONS" value="" />
