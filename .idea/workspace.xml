@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ef0e1e9-e30f-476a-b4b9-b1b360d7afc6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Lab6/Server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab6/Сlient.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Lab5/Lab5.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lab5/Lab5.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab5/text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Lab5/text.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +28,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Lab5/Lab5.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Lab6/Server.py" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -39,7 +42,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Lab5">
+  <component name="RunManager" selected="Python.Сlient">
+    <configuration name="Unnamed (1)" type="CompoundRunConfigurationType">
+      <method v="2" />
+    </configuration>
+    <configuration name="Unnamed" type="CompoundRunConfigurationType">
+      <method v="2" />
+    </configuration>
     <configuration name="Lab1" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Python_Labs" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -145,6 +154,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Server" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Python_Labs" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Asus\PycharmProjects\Python_Labs\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lab6" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lab6/Server.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="Python_Labs" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -166,7 +196,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Сlient" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Python_Labs" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Asus\PycharmProjects\Python_Labs\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lab6" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lab6/Сlient.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="Compound.Unnamed (1)" />
+      <item itemvalue="Compound.Unnamed" />
+      <item itemvalue="Python.Server" />
+      <item itemvalue="Python.Сlient" />
       <item itemvalue="Python.Lab5" />
       <item itemvalue="Python.Lab4" />
       <item itemvalue="Python.Lab3" />

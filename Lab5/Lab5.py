@@ -121,7 +121,7 @@ def click_show(frame, window):
         body(i, 2, 0, frame)
         radiobutton.append(r)
 
-def click_save(frame_lable, str_record, str_name, str_first_name, str_second_name, str_telephone, str_calendar, str_experience, variable, r_var):
+def click_create(frame_lable, str_record, str_name, str_first_name, str_second_name, str_telephone, str_calendar, str_experience, variable, r_var):
     gender = ""
     if (r_var.get()):
         gender = "w"
@@ -230,7 +230,7 @@ frame_btn.pack()
 frame_new_record.pack()
 frame_table.pack()
 
-create = Button(frame_btn, text="Добавление записи", background="light steel blue", foreground="RoyalBlue4", padx="20", pady="8", font=("Comic Sans MS", 10), command=lambda: click_save(frame_lable,str_record, str_name, str_first_name, str_second_name, str_telephone, str_calendar, str_experience, variable, r_var)).grid(row=0, column=0)
+create = Button(frame_btn, text="Добавление записи", background="light steel blue", foreground="RoyalBlue4", padx="20", pady="8", font=("Comic Sans MS", 10), command=lambda: click_create(frame_lable,str_record, str_name, str_first_name, str_second_name, str_telephone, str_calendar, str_experience, variable, r_var)).grid(row=0, column=0)
 delete = Button(frame_btn, text="Удаление записи", background="light steel blue", foreground="RoyalBlue4", padx="20", pady="8", font=("Comic Sans MS", 10), command=lambda: click_delete(frame_table, window,r_var)).grid(row=0, column=1)
 show = Button(frame_btn, text="Отобразить записи", background="light steel blue", foreground="RoyalBlue4", padx="20", pady="8", font=("Comic Sans MS", 10),  command=lambda: click_show(frame_table, window)).grid(row=0, column=2)
 find = Button(frame_btn, text="Найти запись", background="light steel blue", foreground="RoyalBlue4", padx="20", pady="8", font=("Comic Sans MS", 10),command=lambda: click_find(frame_table,variable)).grid(row=0, column=3)
