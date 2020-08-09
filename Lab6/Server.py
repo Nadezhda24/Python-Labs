@@ -8,6 +8,9 @@ while True:
     data = conn.recv(1024).decode()
     if not data:
         break
-    s = data.lstrip(",").replace(",,",",").replace(" ,", ",").replace(",", ", ")
+    while data.find(",,") != -1:
+        data = data.replace(",,",",")
+    s = data.lstrip(",").replace(" ,", ",").replace(",", ", ")
+    print(s)
     conn.send(s.encode())
 conn.close()
