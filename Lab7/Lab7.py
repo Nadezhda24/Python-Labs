@@ -2,21 +2,6 @@ import sqlite3
 from tkinter import *
 from tkcalendar import DateEntry
 
-class Teacher:
-
-    def __init__(self, record, name, first_name,
-                 second_name, gender, birthday,
-                 telephone, discipline,experience ):
-        self.record = record
-        self.name = name
-        self.first_name = first_name
-        self.second_name = second_name
-        self.gender = gender
-        self.birthday = birthday
-        self.telephone = telephone
-        self.discipline = discipline
-        self.experience = experience
-
 person = []
 
 def hat(i, j, frame):
@@ -59,56 +44,59 @@ def hat(i, j, frame):
                              pady="8", width=8, height=1, borderwidth=2, relief="groove")
     lable_experience.grid(row=1+i, column=9+j)
 
-def body(i,k,h, frame):
-    record = Label(frame, text=str(person[i].record), font=("Comic Sans MS", 10), background="lavender",
+def body(i,k,h, frame,person ):
+    record = Label(frame, text=str(person[0].strip(",'()")), font=("Comic Sans MS", 10), background="lavender",
                    padx="20",
                    pady="8", width=12, height=1, borderwidth=2, relief="groove")
     record.grid(row=i + k, column=1+h)
 
-    name = Label(frame, text=str(person[i].name), font=("Comic Sans MS", 10), background="lavender", padx="20",
+    name = Label(frame, text=str(person[1].strip(",'()")), font=("Comic Sans MS", 10), background="lavender", padx="20",
                  pady="8",
                  width=8, height=1, borderwidth=2, relief="groove")
     name.grid(row=i + k, column=2+h)
 
-    first_name = Label(frame, text=str(person[i].first_name), font=("Comic Sans MS", 10), background="lavender",
+    first_name = Label(frame, text=str(person[2].strip(",'()")), font=("Comic Sans MS", 10), background="lavender",
                        padx="20",
                        pady="8", width=8, height=1, borderwidth=2, relief="groove")
     first_name.grid(row=i + k, column=3+h)
 
-    second_name = Label(frame, text=str(person[i].second_name), font=("Comic Sans MS", 10), background="lavender",
+    second_name = Label(frame, text=str(person[3].strip(",'()")), font=("Comic Sans MS", 10), background="lavender",
                         padx="20",
                         pady="8", width=8, height=1, borderwidth=2, relief="groove")
     second_name.grid(row=i + k, column=4+h)
 
-    gender = Label(frame, text=str(person[i].gender), font=("Comic Sans MS", 10), background="lavender", padx="20",
+    gender = Label(frame, text=str(person[4].strip(",'()")), font=("Comic Sans MS", 10), background="lavender", padx="20",
                    pady="8",
                    width=8, height=1, borderwidth=2, relief="groove")
     gender.grid(row=i + k, column=5+h)
 
-    birthday = Label(frame, text=str(person[i].birthday), font=("Comic Sans MS", 10), background="lavender",
+    birthday = Label(frame, text=str(person[5].strip(",'()")), font=("Comic Sans MS", 10), background="lavender",
                      padx="20",
                      pady="8", width=8, height=1, borderwidth=2, relief="groove")
     birthday.grid(row=i + k, column=6+h)
 
-    telephone = Label(frame, text=str(person[i].telephone), font=("Comic Sans MS", 10), background="lavender",
+    telephone = Label(frame, text=str(person[6].strip(",'()")), font=("Comic Sans MS", 10), background="lavender",
                       padx="20",
                       pady="8", width=8, height=1, borderwidth=2, relief="groove")
     telephone.grid(row=i + k, column=7+h)
 
-    discipline = Label(frame, text=str(person[i].discipline), font=("Comic Sans MS", 10), background="lavender",
+    discipline = Label(frame, text=str(person[7].strip(",'()")), font=("Comic Sans MS", 10), background="lavender",
                        padx="20",
                        pady="8", width=8, height=1, borderwidth=2, relief="groove")
     discipline.grid(row=i + k, column=8+h)
 
-    experience = Label(frame, text=str(person[i].experience), font=("Comic Sans MS", 10), background="lavender",
+    experience = Label(frame, text=str(person[8].strip(",'()")), font=("Comic Sans MS", 10), background="lavender",
                        padx="20",
                        pady="8", width=8, height=1, borderwidth=2, relief="groove")
     experience.grid(row=i + k, column=9+h)
 
-def click_show(frame, window):
+def click_show(frame):
     cur.execute("Select record, name, first_name, second_name, gender_name, birthday, telephone, name_discipline, experience from Person "
                 "join Gender on (Person.id_gender = Gender.id_gender) "
                 "join Discipline on (Person.id_discipline = Discipline.id_discipline)")
+
+    p = list(cur.fetchall())
+
 
 
     r_var = IntVar()
@@ -116,10 +104,11 @@ def click_show(frame, window):
     hat(0, 0, frame)
     radiobutton = []
 
-    for i in range(len(person)):
+    for i in range(len(p)):
+        person = str(p[i]).split(" ")
         r = Radiobutton(frame, background="lavender", activebackground="lavender", variable=r_var, value=i)
         r.grid(row=i + 2, column=0)
-        body(i, 2, 0, frame)
+        body(i, 2, 0, frame,person)
         radiobutton.append(r)
 
 
@@ -136,13 +125,25 @@ def click_save(frame_lable, str_record, str_name, str_first_name, str_second_nam
     cur.execute("INSERT INTO Person VALUES ("+str(str_record.get())+",'"+ str(str_name.get())+"','"+ str(str_first_name.get())+"','"+str(str_second_name.get())+ "','"+ str(str_calendar.get())+"',"+ str(str_telephone.get())+  ","+ str(str_experience.get())+","+ str(gender)+"," + str(id_dic[0]) +" );")
 
     hint = Label(frame_lable, text="Запись добавлена", font=("Comic Sans MS", 8), background="lavender",padx="20", pady="8", ).grid(row=0, column=0)
-
+    db.commit()
 
 def click_delete(frame_table, window, r_var):
-    if len(person) != 0:
-        person.pop(r_var.get())
-    click_show(frame_table, window)
+    cur.execute(
+        "Select record, name, first_name, second_name, gender_name, birthday, telephone, name_discipline, experience from Person "
+        "join Gender on (Person.id_gender = Gender.id_gender) "
+        "join Discipline on (Person.id_discipline = Discipline.id_discipline)")
 
+    p = list(cur.fetchall())
+    if len(p) != 0:
+        for i in range(len(p)):
+            if i == r_var.get():
+                person = str(p[i]).split(" ")
+                cur.execute(
+                    "DELETE FROM Person where record = " + str (person[0].strip(",'()") + ";"))
+    click_show(frame_table)
+    hint = Label(frame_lable, text="Запись удалена", font=("Comic Sans MS", 8), background="lavender", padx="20",
+                 pady="8", ).grid(row=0, column=0)
+    db.commit()
 
 
 window = Tk()
@@ -201,7 +202,7 @@ discipline = [ "math", "english",  "python",  "c++",  "java"]
 
 create = Button(frame_btn, text="Добавление записи", background="light steel blue", foreground="RoyalBlue4", padx="20", pady="8", font=("Comic Sans MS", 10), command=lambda: click_save(frame_lable,str_record, str_name, str_first_name, str_second_name, str_telephone, str_calendar, str_experience, variable, r_var)).grid(row=0, column=0)
 delete = Button(frame_btn, text="Удаление записи", background="light steel blue", foreground="RoyalBlue4", padx="20", pady="8", font=("Comic Sans MS", 10), command=lambda: click_delete(frame_table, window,r_var)).grid(row=0, column=1)
-show = Button(frame_btn, text="Отобразить записи", background="light steel blue", foreground="RoyalBlue4", padx="20", pady="8", font=("Comic Sans MS", 10),  command=lambda: click_show(frame_table, window)).grid(row=0, column=2)
+show = Button(frame_btn, text="Отобразить записи", background="light steel blue", foreground="RoyalBlue4", padx="20", pady="8", font=("Comic Sans MS", 10),  command=lambda: click_show(frame_table)).grid(row=0, column=2)
 
 lable_record = Label(frame_new_record, text="Табельный номер: ", font=("Comic Sans MS", 10), background="lavender",padx="20", pady="8", width=15, height=1).grid(row=0, column=0)
 str_record = StringVar()
