@@ -12,6 +12,8 @@ def isint(value):
         return int(value) == float(value)
     except ValueError:
         return False
+
+
 while True:
     try:
         k = int(input("==========================\n"
@@ -55,13 +57,39 @@ while k != 0:
                 print("Ошибка, введен не верный номер задания. Попробуйте снова.")
                 continue
             break
-        a = [1,-2.78,3, "dscdc", 5, 3, 5, 1, "dscdc"]
+        a = [1,-2.78,3, "dscdc", 5, 3.5, 5.0, 1, "dscdc"]
         while k2 != 0:
             if k2 == 1:
                 print(a)
             elif k2 == 2:
-                x = (input("Ввведите значение: "))
-                a.append(x)
+                t = (input("Введите тип: "))
+                if (t == "str"):
+                    while True:
+                        try:
+                            x = (input("Ввведите значение: "))
+                        except:
+                            print("Ошибка. Попробуйте снова.")
+                            continue
+                        break
+                    a.append(x)
+                elif (t == "int"):
+                    while True:
+                        try:
+                            x = int(input("Ввведите значение: "))
+                        except:
+                            print("Ошибка, введено не целое число. Попробуйте снова.")
+                            continue
+                        break
+                    a.append(x)
+                elif (t == "float"):
+                    while True:
+                        try:
+                            x = float(input("Ввведите значение: "))
+                        except:
+                            print("Ошибка, введено значение не типа float. Попробуйте снова.")
+                            continue
+                        break
+                    a.append(x)
             elif k2 == 3:
                 print("1. Удалить по номеру в списке.\n"
                       "2. Удалить по значению.")
@@ -86,6 +114,7 @@ while k != 0:
                         print("Ошибка, элемента с данным номером не существует.")
                 elif k4 == 2:
                     while True:
+
                         try:
                             x = int(input("Ввведите значение: "))
                         except:
@@ -99,17 +128,17 @@ while k != 0:
                 else: print("Ошибка, введен не верный способ удаления. Попробуйте снова.")
             elif k2 == 4:
                 b = []
-                for i in range(len(a)):
-                   if isfloat(a[i]):
-                       if a[i] > 0:
-                             b.append(a[i])
+                for i in a:
+                   if isinstance(i,float):
+                       if float(i) > 0:
+                             b.append(float(i))
                 print("Кортеж: ")
                 print(tuple(b))
             elif k2 == 5:
                 p = int(1)
-                for i in range(len(a)):
-                    if isint(a[i]):
-                       p = int(p) * int(a[i])
+                for i in a:
+                    if isinstance(i,int):
+                       p = int(p) * i
                 print("Произведение: " + str(p))
             elif k2 == 6:
                 s = str("")

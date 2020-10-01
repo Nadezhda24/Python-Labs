@@ -109,7 +109,14 @@ def body(i,k,h, frame):
                        pady="8", width=8, height=1, borderwidth=2, relief="groove")
     experience.grid(row=i + k, column=9+h)
 
-def click_show(frame, window):
+def click_show(frame_lable,frame, window):
+
+    for widget in frame_lable.winfo_children():
+        widget.destroy()
+
+    for widget in frame.winfo_children():
+        widget.destroy()
+
     r_var = IntVar()
     r_var.set(0)
     hat(0, 0, frame)
@@ -132,14 +139,17 @@ def click_create(frame_lable, str_record, str_name, str_first_name, str_second_n
                 str(gender), str(str_calendar.get()), str(str_telephone.get()), str(variable.get()),
                 str(str_experience.get())))
 
-    hint = Label(frame_lable, text="Запись дабавлена", font=("Comic Sans MS", 8), background="lavender",padx="20", pady="8", width=15, height=1).grid(row=0, column=0)
+    hint = Label(frame_lable, text="Запись добавлена", font=("Comic Sans MS", 8), background="lavender",padx="20", pady="8", width=15, height=1).grid(row=0, column=0)
 
 def click_delete(frame_table, window, r_var):
     if len(person) != 0:
         person.pop(r_var.get())
-    click_show(frame_table, window)
+    hint = Label(frame_lable, text="Запись удалена", font=("Comic Sans MS", 8), background="lavender", padx="20",
+                 pady="8", width=15, height=1).grid(row=0, column=0)
 
 def click_find(frame_table, variable):
+    for widget in frame_table.winfo_children():
+        widget.destroy()
     hat(0, 0, frame_table)
     for i in range(len(person)):
         if (person[i].discipline == variable.get()):
@@ -163,13 +173,13 @@ def click_new_record():
     variable.set(discipline[0])
 
 
-def click_open(frame_table):
+def click_open(frame_lable,frame, window):
     person.clear()
     f = open('text.txt')
     for line in f:
         teacher =line.split(" ")
         person.append(Teacher(str(teacher[0]),teacher[1],teacher[2],teacher[3],teacher[4],str(teacher[5]),str(teacher[6]),teacher[7],str(teacher[8])))
-    click_show(frame_table, window)
+    click_show(frame_lable, frame, window)
 
 def click_save():
     try:
@@ -207,7 +217,7 @@ filemenu = Menu(mainmenu, tearoff=0)
 helpmenu = Menu(mainmenu, tearoff=0)
 
 filemenu.add_command(label="Создать",command=lambda: click_new_record())
-filemenu.add_command(label="Открыть",command=lambda: click_open(frame_table))
+filemenu.add_command(label="Открыть",command=lambda: click_open(frame_lable,frame_table, window))
 filemenu.add_command(label="Сохранить",command=lambda: click_save())
 filemenu.add_command(label="Сохранить как...", command=lambda: click_saveas())
 filemenu.add_command(label="Выход", command=lambda: click_allexit())
@@ -232,7 +242,7 @@ frame_table.pack()
 
 create = Button(frame_btn, text="Добавление записи", background="light steel blue", foreground="RoyalBlue4", padx="20", pady="8", font=("Comic Sans MS", 10), command=lambda: click_create(frame_lable,str_record, str_name, str_first_name, str_second_name, str_telephone, str_calendar, str_experience, variable, r_var)).grid(row=0, column=0)
 delete = Button(frame_btn, text="Удаление записи", background="light steel blue", foreground="RoyalBlue4", padx="20", pady="8", font=("Comic Sans MS", 10), command=lambda: click_delete(frame_table, window,r_var)).grid(row=0, column=1)
-show = Button(frame_btn, text="Отобразить записи", background="light steel blue", foreground="RoyalBlue4", padx="20", pady="8", font=("Comic Sans MS", 10),  command=lambda: click_show(frame_table, window)).grid(row=0, column=2)
+show = Button(frame_btn, text="Отобразить записи", background="light steel blue", foreground="RoyalBlue4", padx="20", pady="8", font=("Comic Sans MS", 10),  command=lambda: click_show(frame_lable,frame_table, window)).grid(row=0, column=2)
 find = Button(frame_btn, text="Найти запись", background="light steel blue", foreground="RoyalBlue4", padx="20", pady="8", font=("Comic Sans MS", 10),command=lambda: click_find(frame_table,variable)).grid(row=0, column=3)
 
 lable_record = Label(frame_new_record, text="Табельный номер: ", font=("Comic Sans MS", 10), background="lavender",padx="20", pady="8", width=15, height=1).grid(row=0, column=0)

@@ -2,7 +2,7 @@ class Teacher:
 
     def __init__(self, record, name, first_name,
                  second_name, gender, birthday,
-                 telephone, discipline,experience ):
+                 telephone, discipline,experience = 1):
         self.record = record
         self.name = name
         self.first_name = first_name
@@ -57,6 +57,7 @@ while k != 0:
                 continue
             break
         discipline = (input("Дисциплина: "))
+
         while True:
             try:
                 experience = int(input("Стаж: "))
@@ -64,9 +65,14 @@ while k != 0:
                 print("Ошибка. Попробуйте снова.")
                 continue
             break
-        person.append(Teacher(record, name, first_name,
+        if (experience < 0):
+         person.append(Teacher(record, name, first_name,
                  second_name, gender, birthday,
-                 telephone, discipline,experience))
+                 telephone, discipline))
+        else:
+            person.append(Teacher(record, name, first_name,
+                                  second_name, gender, birthday,
+                                  telephone, discipline, experience ))
     elif k == 2:
         while True:
             try:

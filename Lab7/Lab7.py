@@ -91,6 +91,13 @@ def body(i,k,h, frame,person ):
     experience.grid(row=i + k, column=9+h)
 
 def click_show(frame):
+
+    for widget in frame_lable.winfo_children():
+        widget.destroy()
+
+    for widget in frame.winfo_children():
+        widget.destroy()
+
     cur.execute("Select record, name, first_name, second_name, gender_name, birthday, telephone, name_discipline, experience from Person "
                 "join Gender on (Person.id_gender = Gender.id_gender) "
                 "join Discipline on (Person.id_discipline = Discipline.id_discipline)")
