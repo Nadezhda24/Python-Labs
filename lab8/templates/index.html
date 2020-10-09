@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>{{title}}</title>
+</head>
+<body>
+    <h1>Welcome to Django!</h1>
+ 
+<table class="table table-hover">
+    <tr>
+        <td>record</td>
+        <td>surname</td>
+        <td>name</td>
+        <td>secondName</td>
+        <td>gender</td>
+        <td>birthday</td>
+        <td>phone</td>
+        <td>experience</td>
+        <td>discipline</td>
+    </tr>
+        {% for choice in list %}
+        <tr>
+            <td>{{ choice.record }}</td>
+            <td>{{ choice.surname }}</td>
+            <td>{{ choice.name }}</td>
+            <td>{{ choice.secondName }}</td>
+            <td>{{ choice.gender }}</td>
+            <td>{{ choice.birthday }}</td>
+            <td>{{ choice.telephone }}</td>
+            <td>{{ choice.experience }}</td>
+            <td>{{ choice.discipline }}</td>
+            <td><a href="delete/{{choice.record}}">Удалить</a></td>
+            </tr>
+        {% endfor %}
+</table>
+
+<a href="lab/" class="btn btn-primary btn-lg btn-block">Добавить</a>
+
+</body>
+</html>
